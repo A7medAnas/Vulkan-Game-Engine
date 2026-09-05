@@ -19,7 +19,7 @@ namespace lve {
         LvePipeline lvepipeline{lveDevice,
             "shaders/simple_shader.vert.spv",
             "shaders/simple_shader.frag.spv",
-            LvePipeline::defaultPipelineconfigInfo(WIDTH, HEIGHT)};
+            LvePipeline::defaultPipelineConfigInfo(WIDTH, HEIGHT)};
 
     };
 }

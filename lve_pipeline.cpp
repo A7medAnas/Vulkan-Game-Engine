@@ -10,7 +10,7 @@ namespace lve {
             LveDevice& device,
             const std::string& vertFilePath,
             const std::string& fragFilePath,
-            const PipelineconfigInfo& configInfo):
+            const PipelineConfigInfo& configInfo):
             lveDevice{device} {
         createGraphicsPipeline(vertFilePath, fragFilePath, configInfo);
     }
@@ -41,7 +41,7 @@ namespace lve {
     }
 
     void LvePipeline::createGraphicsPipeline(
-        const std::string& vertFilePath, const std::string& fragFilePath, const PipelineconfigInfo& configInfo) {
+        const std::string& vertFilePath, const std::string& fragFilePath, const PipelineConfigInfo& configInfo) {
 
         assert(configInfo.pipelineLayout != VK_NULL_HANDLE && "Cannot craete graphics pipeline:: no pipeline layout provided in configInfo");
         assert(configInfo.renderPass != VK_NULL_HANDLE && "Cannot craete graphics pipeline:: no renderpass layout provided in configInfo");
@@ -111,8 +111,8 @@ namespace lve {
         }
     }
 
-    PipelineconfigInfo LvePipeline::defaultPipelineconfigInfo(u_int32_t width, u_int32_t height) {
-        PipelineconfigInfo configInfo{};
+    PipelineConfigInfo LvePipeline::defaultPipelineConfigInfo(u_int32_t width, u_int32_t height) {
+        PipelineConfigInfo configInfo{};
 
         configInfo.inputAssemblyInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
         configInfo.inputAssemblyInfo.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;

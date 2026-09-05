@@ -7,7 +7,7 @@
 
 namespace lve {
 
-    struct PipelineconfigInfo {
+    struct PipelineConfigInfo {
         VkViewport viewport;
         VkRect2D scissor;
         VkPipelineViewportStateCreateInfo viewportInfo;
@@ -29,14 +29,14 @@ namespace lve {
             LveDevice& device,
             const std::string& vertFilePath,
             const std::string& fragFilePath,
-            const PipelineconfigInfo& configInfo);
+            const PipelineConfigInfo& configInfo);
 
         ~LvePipeline();
 
         LvePipeline(const LvePipeline&) = delete;
         LvePipeline& operator =(const LvePipeline&) = delete;
 
-        static PipelineconfigInfo defaultPipelineconfigInfo(u_int32_t width, u_int32_t height);
+        static PipelineConfigInfo defaultPipelineConfigInfo(u_int32_t width, u_int32_t height);
 
     private:
         static std::vector<char> readFile(const std::string& filepath);
@@ -44,7 +44,7 @@ namespace lve {
         void createGraphicsPipeline(
             const std::string& vertFilePath,
             const std::string& fragFilePath,
-            const PipelineconfigInfo& configInfo);
+            const PipelineConfigInfo& configInfo);
     
         void createShaderModule(const std::vector<char>& code, VkShaderModule* shaderModule);
 
