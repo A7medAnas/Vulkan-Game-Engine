@@ -36,7 +36,9 @@ namespace lve {
         LvePipeline(const LvePipeline&) = delete;
         LvePipeline& operator =(const LvePipeline&) = delete;
 
-        static PipelineConfigInfo defaultPipelineConfigInfo(u_int32_t width, u_int32_t height);
+        static void defaultPipelineConfigInfo(PipelineConfigInfo& configInfo, uint32_t width, uint32_t height);
+
+        void bind(VkCommandBuffer commandBuffer);
 
     private:
         static std::vector<char> readFile(const std::string& filepath);
@@ -52,5 +54,9 @@ namespace lve {
         VkPipeline graphicsPipeline;
         VkShaderModule vertShaderModule;
         VkShaderModule fragShaderModule;
+
+        VkPipelineLayout pipelineLayout;
     };
+
+    
 }

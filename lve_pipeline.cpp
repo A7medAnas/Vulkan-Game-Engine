@@ -15,6 +15,10 @@ namespace lve {
         createGraphicsPipeline(vertFilePath, fragFilePath, configInfo);
     }
 
+    void LvePipeline::bind(VkCommandBuffer commandBuffer) {
+        vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, graphicsPipeline);
+    }
+
     LvePipeline::~LvePipeline() {
         vkDestroyShaderModule(lveDevice.device(), vertShaderModule, nullptr);
         vkDestroyShaderModule(lveDevice.device(), fragShaderModule, nullptr);
@@ -111,8 +115,7 @@ namespace lve {
         }
     }
 
-    PipelineConfigInfo LvePipeline::defaultPipelineConfigInfo(u_int32_t width, u_int32_t height) {
-        PipelineConfigInfo configInfo{};
+    void LvePipeline::defaultPipelineConfigInfo(PipelineConfigInfo& configInfo, uint32_t width, uint32_t height) {
 
         configInfo.inputAssemblyInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
         configInfo.inputAssemblyInfo.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
@@ -186,7 +189,6 @@ namespace lve {
         configInfo.depthStencilInfo.front = {};  // Optional
         configInfo.depthStencilInfo.back = {};   // Optional
 
-        return configInfo;
     }
 
     
